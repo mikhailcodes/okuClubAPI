@@ -3,7 +3,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 const fetchData = async () => {
     try {
         const response = await fetch(
-            "https://oku.club/api/users/profile/mikhailarden?format=json"
+            "https://oku.club/api/collections/user/mikhailarden/reading?format=json"
         );
         const data = await response.json();
         return data;
