@@ -9,21 +9,17 @@ const fetchData = async () => {
         return data;
     } catch (error) {
         console.error("Error fetching data:", error);
-        throw error;
+        // Handle the error here, you can return an error object or throw an error.
+        // For simplicity, let's return an empty object in case of an error.
+        return {};
     }
 };
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
-
-    const getData = async () => {
-        try {
-            const data = await fetchData();
-            return data;
-        } catch (error) {
-            return error;
-        }
-    };
-
-
-    return getData();
+export default async function handler(req, res) {
+    try {
+        const data = await fetchData();
+        res.status(200).json(data); // Sending the data in the response
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch data" }); // Sending an error response
+    }
 }
